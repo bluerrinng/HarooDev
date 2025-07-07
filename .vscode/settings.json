@@ -55,13 +55,5 @@
         "__config": "cpp",
         "iterator": "cpp"
     },
-    "C_Cpp.default.compilerPath": "/Library/Developer/CommandLineTools/usr/bin/gcc",
-    "code-runner.executorMap": {
-        "cpp": "clang++ -std=c++17 -stdlib=libc++ $fileName -o $fileNameWithoutExt && ./$fileNameWithoutExt"
-    },
-    "code-runner.executorMapByFileExtension": {
-        ".cpp": "clang++ -std=c++17 -stdlib=libc++ $fileName -o $fileNameWithoutExt && ./$fileNameWithoutExt"
-    },
-    "code-runner.runInTerminal": true,
-    "code-runner.saveFileBeforeRun": true
+    "C_Cpp.default.compilerPath": "/Library/Developer/CommandLineTools/usr/bin/gcc"
 }
