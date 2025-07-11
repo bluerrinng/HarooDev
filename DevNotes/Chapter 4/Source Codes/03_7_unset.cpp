@@ -4,3 +4,41 @@ unordered_set은 기존의 set처럼 사용이 가능하다, 차이점이라면 
 unordered_set은 해시 구조를 띄어서 정렬을 하지 않고 더 빠르게 탐색 및 삽입/삭제가 가능하다 -> O(1)
 */
 
+#include <iostream>
+#include <unordered_set>
+
+using namespace std;
+
+int main()
+{
+    unordered_set<int> myset;
+
+    int num;
+
+    /*
+    while(1)
+    {
+        cin >> num;
+        
+        
+        if(cin.eof()) break;
+        else
+        {
+            myset.insert(num);
+        }
+            
+    }
+    */
+
+    myset.insert(4);
+    myset.insert(5);
+    myset.insert(6);
+    myset.insert(7);
+
+    for (auto it = myset.begin();it!= myset.end();it++)
+    {
+        cout << *it << endl;
+    }
+
+    return 0;
+}
