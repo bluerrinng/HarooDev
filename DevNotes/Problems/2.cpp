@@ -1,3 +1,8 @@
+/*
+문제 2번 : 
+
+*/
+
 #include <iostream>
 #include <vector>
 
