@@ -16,7 +16,7 @@ using namespace std;
 
 vector<int> solution(vector<int>& numbers)
 {
-    set<int> myset;
+    set<int> myset;                                 //set을 사용하여 중복 값 제거 및 자동으로 정렬
 
     for(int i = 0; i< numbers.size(); i++)
     {
