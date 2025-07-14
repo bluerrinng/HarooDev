@@ -15,12 +15,12 @@ using namespace std;
 
 int main()
 {
-    vector<int> v = {1,3,5,2,7,9,1,8,6,9};
+    vector<int> v = {1,3,5,2,7,9,1,8,6};
 
     auto max_it = max_element(v.begin(),v.end());
     auto min_it = min_element(v.begin(),v.end());
 
-    cout << (max_it) << endl;
+    cout << (*max_it) << endl;
     cout << (*min_it) << endl;
 
     return 0;
