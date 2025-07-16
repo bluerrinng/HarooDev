@@ -9,28 +9,39 @@ using namespace std;
 
 vector<vector<int>> solution(vector<vector<int>> arr1, vector<vector<int>> arr2)
 {
-    vector<vector<int>> result;
-    for(int i = 0; i < arr1.size();i++)
+    vector<vector<int>> result (arr1.size(),vector<int>(arr2[0].size(),0));
+
+    for(int i = 0; i < arr1.size(); i++)
     {
         for(int j = 0; j< arr2[0].size();j++)
         {
-            for(int k = 0; k < arr2.size();k++)
+            for(int k = 0; k< arr2.size();k++)
             {
-                
+                result[i][j] += arr1[i][k] * arr2[k][j];
             }
         }
-        
-
     }
+
+    return result;
 }
 
-/*
-a11 a12              b11  b12
-a21 a22              b21  b22
-a31 a32
+int main()
+{
+    vector<vector<int>> arr1 = {{1,2},{3,4},{5,6}};
+    vector<vector<int>> arr2 = {{7,8},{9,10}};
+
+    auto result = solution(arr1,arr2);
+
+    for(int i = 0; i< result.size();i++)
+    {
+        for(int j = 0; j<result[0].size();j++)
+        {
+            cout << result[i][j] << endl;
+        }
+    }
+
+    return 0;
+}
 
 
-= a11 * b11 + a12 *b21         
-  a21* b11 + a22 * b21
-  a31* b11 + a32 * b21
-*/
+
