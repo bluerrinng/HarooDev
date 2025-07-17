@@ -8,3 +8,36 @@
 
 */
 
+#include <iostream>
+#include <vector>
+#include <map>
+
+using namespace std;
+
+vector<int> solution(int N, vector<int> stages)
+{
+    vector<int> peopleCount(N,0);
+
+    for(int i = 0; i<stages.size(); i++)
+    {
+        peopleCount[stages[i]-1]++;
+    }
+
+    return peopleCount;
+    
+}
+
+int main()
+{
+    vector<int> stages = {2,1,2,6,2,4,3,3};
+    int N = 5;
+
+    auto result = solution(N, stages);
+    
+    for (auto it = result.begin(); it!= result.end(); it++)
+    {
+        cout << (*it) << endl;
+    }
+
+    return 0;
+}
