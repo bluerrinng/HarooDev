@@ -14,16 +14,26 @@
 
 using namespace std;
 
-vector<int> solution(int N, vector<int> stages)
+vector<float> solution(int N, vector<int> stages)
 {
     vector<int> peopleCount(N,0);
+    vector<float> calculateFail;
 
+    //각 스테이지 별로 몇명이 있는지 정리
     for(int i = 0; i<stages.size(); i++)
     {
         peopleCount[stages[i]-1]++;
     }
 
-    return peopleCount;
+    //각 스테이지 별로 실패율 계산
+    int total = stages.size();
+    for(int i = 0; i<peopleCount.size();i++)
+    {
+        calculateFail.push_back((float)peopleCount[i]/(total));
+        total-=peopleCount[i];
+    }
+
+    return calculateFail;
     
 }
 
