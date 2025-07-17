@@ -14,10 +14,12 @@
 
 using namespace std;
 
-vector<float> solution(int N, vector<int> stages)
+vector<int> solution(int N, vector<int> stages)
 {
     vector<int> peopleCount(N,0);
     vector<float> calculateFail;
+    multimap<float,int> result;
+    vector<int> final;
 
     //각 스테이지 별로 몇명이 있는지 정리
     for(int i = 0; i<stages.size(); i++)
@@ -32,13 +34,33 @@ vector<float> solution(int N, vector<int> stages)
         calculateFail.push_back((float)peopleCount[i]/(total));
         total-=peopleCount[i];
     }
+    
+    for(int i = 0; i<calculateFail.size();i++)
+    {
+        result.insert(make_pair(calculateFail[i],i+1));
+    }
 
-    return calculateFail;
+    for(auto it = result.begin();it != result.end(); it++)
+    {
+        if( (it->first) == (next(it)->first) && (it->second) < (next(it)->second))
+        {
+            swap(it->second, next(it)->second);
+        }
+    }
+
+
+    for(auto it = result.rbegin();it!=result.rend();it++)
+    {
+        final.push_back(it->second);
+    }
+
+    return final;
     
 }
 
 int main()
 {
+    
     vector<int> stages = {2,1,2,6,2,4,3,3};
     int N = 5;
 
@@ -47,7 +69,8 @@ int main()
     for (auto it = result.begin(); it!= result.end(); it++)
     {
         cout << (*it) << endl;
+
     }
 
-    return 0;
+        return 0;
 }
