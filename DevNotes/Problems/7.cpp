@@ -1,22 +1,21 @@
 /*
 7.cpp
-
 */
 
-#include <iostream>
-#include <vector>
+#include <string>
 
 using namespace std;
 
 bool visited[11][11][4];
 
 int dx[] = {0,1,0,-1};
-int dy[] = {-1,0,1,0};
+int dy[] = {1,0,-1,0};
 
 int todir(char dir)
 {
     int ret;
-    if(dir == 'U') 
+
+    if(dir == 'U')
     {
         ret = 0;
     }
@@ -24,11 +23,11 @@ int todir(char dir)
     {
         ret = 1;
     }
-    else if( dir == 'D')
+    else if (dir == 'D')
     {
         ret = 2;
     }
-    else if(dir == 'L')
+    else if (dir == 'L')
     {
         ret = 3;
     }
@@ -36,24 +35,24 @@ int todir(char dir)
     return ret;
 }
 
-
-//comment tests
-
 bool isNotValid(int x, int y)
 {
-    return x < 0 || y < 0 || x > 10 || y > 10;
+    return x < 0 || y <0 || x > 10 || y > 10;
 }
+
 int opposite_direction(int dir)
 {
-    return (dir+2) % 4 ;
+    return (dir+2) % 4;
 }
+
 
 int solution(string dirs)
 {
-    int answer = 0; 
-    int x =5, y = 5;
+    int count = 0;
+    int x = 5;
+    int y = 5;
 
-    for (auto c : dirs)
+    for(auto c : dirs)
     {
         int dir = todir(c);
         int nx = x + dx[dir];
@@ -68,12 +67,12 @@ int solution(string dirs)
         {
             visited[y][x][dir] = true;
             visited[ny][nx][opposite_direction(dir)] = true;
-            answer++;
+            count++;
         }
 
         x = nx;
         y = ny;
     }
 
-    return answer;
+    return count;
 }
