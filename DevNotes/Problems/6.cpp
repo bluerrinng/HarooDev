@@ -8,63 +8,33 @@
 
 */
 
+#include <algorithm>
 #include <iostream>
 #include <vector>
-#include <map>
+
 
 using namespace std;
 
 vector<int> solution(int N, vector<int> stages)
 {
-    vector<int> peopleCount(N,0);
-    vector<float> calculateFail;
-    multimap<float,int> result;
-    vector<int> final;
+    vector<int> answer;
+    vector<int> peopleCount(N+1,0);
 
-    //각 스테이지 별로 몇명이 있는지 정리
-    for(int i = 0; i<stages.size(); i++)
+    int totalNum = stages.size();
+    for(int i = 0; i<stages.size();i++)
     {
         peopleCount[stages[i]-1]++;
     }
 
-    //각 스테이지 별로 실패율 계산
-    int total = stages.size();
-    for(int i = 0; i<peopleCount.size();i++)
-    {
-        calculateFail.push_back((float)peopleCount[i]/(total));
-        total-=peopleCount[i];
-    }
-    
-    for(int i = 0; i<calculateFail.size();i++)
-    {
-        result.insert(make_pair(calculateFail[i],i+1));
-    }
-
-    for(auto it = result.begin();it != result.end(); it++)
-    {
-        if( (it->first) == (next(it)->first) && (it->second) < (next(it)->second))
-        {
-            swap(it->second, next(it)->second);
-        }
-    }
-
-
-    for(auto it = result.rbegin();it!=result.rend();it++)
-    {
-        final.push_back(it->second);
-    }
-
-    return final;
-    
 }
 
 int main()
 {
     
-    vector<int> stages = {2,1,2,6,2,4,3,3};
-    int N = 5;
+    vector<int> stages = {4,4,4,4,4};
+    int N = 4;
 
-    auto result = solution(N, stages);
+    auto result = solution(N, stages); 
     
     for (auto it = result.begin(); it!= result.end(); it++)
     {
