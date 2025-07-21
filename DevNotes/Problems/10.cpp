@@ -19,4 +19,4 @@
 
 */
 
-//문제 분석: [../Explanation/10.md](../Explanation/10.md)
+// 문제 분석 참고: https://github.com/bluerrinng/HarooDev/blob/main/DevNotes/Explanation/10.md
