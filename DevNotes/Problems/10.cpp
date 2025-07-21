@@ -16,5 +16,7 @@
 "[)()]"           0
 "}}}"             0
 
-문제 분석: [../Explanation/10.md](../Explanation/10.md)
+
 */
+
+//문제 분석: [../Explanation/10.md](../Explanation/10.md)
