@@ -13,7 +13,7 @@ void dfs(int x,int y, vector<vector<int>>& grid, vector<vector<bool>>& visited)
 
     visited[x][y] = true;
 
-    for(int i = 0; i<4;i++)그
+    for(int i = 0; i<4;i++)
     {
         int nx = x+ dx[i];
         int ny = y+ dy[i];
