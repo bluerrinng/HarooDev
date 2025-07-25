@@ -1,41 +1,85 @@
-#include <iostream>
+#include <vector>
+using namespace std;
 
-struct Node
+class Node
 {
-    int data;
-    Node* left;
-    Node* right;
+    public:
+        int val;
+        Node* left, *right;
 
-    Node(int value) : data(value), left(nullptr), right(nullptr){};
+        Node(int key) : val(key), left(nullptr), right(nullptr)
+        {
+
+        }
 };
 
-class BinarySearchTree
+class BST
 {
-    private: 
+    private:
         Node* root;
 
-    public:
-        BinarySearchTree()
+        Node* insertNode(Node* node, int key)
         {
-            root = nullptr;
+            if(!node)
+            {
+                return new Node(key);
+            }
+
+            if(key < node->val)
+            {
+                node->left = insertNode(node->left,key);
+            }
+            else
+            {
+                node->right = insertNode(node->right,key);
+            }
+
+            return node;
         }
 
-        Node* insert(Node* root, int value)
+        bool searchNode(Node* node, int key)
         {
-            if(root == nullptr)
+            if(!node)
             {
-                return new Node(value);
+                return false;
             }
 
-            if(value < root->data)
+            if(key == node->val)
             {
-                root->left = insert(root->left, value);
+                return true;
             }
-            else if(value > root->data)
-            {
-                root->right = insert(root->right,value);
-            }
-            
-            return root;
+
+            return  key < node->val ? searchNode(node->left,key) : searchNode(node->right, key);
+        }
+
+    public:
+        BST() :root(nullptr){}
+        void insert(int key)
+        {
+            root = insertNode(root,key);
+        }
+
+        bool search(int key)
+        {
+            return searchNode(root, key);
         }
 };
+
+vector<bool> solution(vector<int>lst, vector<int> search_list)
+{
+    BST bst;
+
+    for (int key : lst)
+    {
+        bst.insert(key);
+    }
+
+    vector<bool> result;
+
+    for(int search_val : search_list)
+    {
+        result.push_back(bst.search(search_val));
+    }
+
+    return result;
+}

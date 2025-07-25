@@ -1,36 +1,117 @@
-#include <string>
 #include <vector>
+#include <iostream>
 
 using namespace std;
 
-vector<bool> visited;
-
-void dfs(vector<vector<int>> computers, int node)
+class Node
 {
-    visited[node] = true;
-
-    for(int i = 0; i<computers.size();i++)
-    {
-        if(computers[node][i] == 1 && !visited[i])
-        {
-            dfs(computers,i);
-        }
-    }
-}
-
-int solution(int n, vector<vector<int>> computers)
-{
-    int answer = 0;
-    visited = vector<bool>(computers.size(),false);
+    public:
+        int val;
+        Node* right, *left;
     
-    for(int i = 0; i <computers.size();i++)
+    Node(int key)
     {
-        if(!visited[i])
+        val = key;
+        right = nullptr;
+        left = nullptr;
+    }
+};
+
+class BST
+{
+    private:
+        Node* root;
+    
+        Node* insertNode(Node* node, int key)
         {
-            dfs(computers,i);
-            answer++;
+            if(node == nullptr)
+            {
+                return new Node(key);
+            }
+
+            if(key < node->val)
+            {
+                node->left = insertNode(node->left,key);
+            }
+            else
+            {
+                node->right = insertNode(node->right,key);
+            }
+
+            return node;
         }
+
+        bool SearchNode(Node*node, int key)
+        {
+            if(node == nullptr)
+            {
+                return false;
+            }
+
+            if(key == node->val)
+            {
+                return true;
+            }
+
+            if(key < node->val)
+            {
+                return SearchNode(node->left,key);
+            }
+            else
+            {
+                return SearchNode(node->right,key);
+            }
+            
+        }
+    
+    public:
+        BST()
+        {
+            root = nullptr;
+        }
+
+        void insert(int key)
+        {
+            root = insertNode(root, key);
+        }
+
+        bool Search(int key)
+        {
+            return SearchNode(root, key);
+        }
+
+};
+
+vector<bool> solution (vector<int> lst, vector<int> search_list)
+{
+    BST bst;
+    vector<bool> result;
+
+    for(auto c : lst)
+    {
+        bst.insert(c);
     }
 
-    return answer;
+    for(auto num : search_list)
+    {
+        result.push_back(bst.Search(num));
+    }
+
+    return result;
 }
+
+int main()
+{
+    vector<int> lst = {5,3,8,4,2,1,7,10};
+    vector<int> search_list  = {1,2,5,6};
+
+    vector<bool> result = solution(lst, search_list);
+
+    for(auto b : result)
+    {
+        cout << b << endl;
+    }
+
+    return 0;
+}
+
