@@ -52,19 +52,19 @@ int main()
     int num, count;
     cin >> num;
 
-    vector<vector<int>> grid;
 
     visited = vector<vector<bool>>(num, vector<bool>(num,false));
 
-    for(int i = 0 ; i< num ; i++)
+    vector<vector<int>> grid =
     {
-        for(int j = 0; j < num ; j++)
-        {
-            int input;
-            cin >> input;
-            grid[i][j] = input;
-        }
-    }
+        {0,1,1,0,1,0,0},
+        {0,1,1,0,1,0,1},
+        {1,1,1,0,1,0,1},
+        {0,0,0,0,1,1,1},
+        {0,1,0,0,0,0,0},
+        {0,1,1,1,1,1,0},
+        {0,1,1,1,0,0,0}
+    };
 
 
     solution(num,grid,visited);
