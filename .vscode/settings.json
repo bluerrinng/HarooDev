@@ -53,7 +53,11 @@
         "vector": "cpp",
         "algorithm": "cpp",
         "__config": "cpp",
-        "iterator": "cpp"
+        "iterator": "cpp",
+        "__tree": "cpp",
+        "map": "cpp",
+        "set": "cpp",
+        "unordered_set": "cpp"
     },
     "C_Cpp.default.compilerPath": "/Library/Developer/CommandLineTools/usr/bin/gcc"
 }

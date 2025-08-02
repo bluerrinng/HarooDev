@@ -1,28 +1,54 @@
 /*
-36.cpp
-깊이 우선 탐색 순회(DFS)
-*/
+12.cpp
 
-#include <unordered_map>
-#include <unordered_set>
+주식 문제
+*/
+#include <iostream>
 #include <vector>
+#include <stack>
 
 using namespace std;
 
-unordered_map<char, vector<char>> adjList;
-vector<char> result;
-unordered_set<char> visited;
-
-void dfs(char node)
+vector<int> solution(vector<int> prices)
 {
-    visited.insert(node);
-    result.push_back(node);
 
-    for(char neighbor: adjList[node])
+    stack<int> temp;
+    vector<int> result {(int)prices.size(),0};
+    int compareNum = 0; 
+
+    for(int i = 0; i< prices.size();i++)
     {
-        if(visited.find(neighbor) == visited.end())
+        temp.push(prices[i]);
+    }
+
+    for(int i = temp.size(); i > 0 ;i--)
+    {
+        if(temp.top() > compareNum)
         {
-            dfs(neighbor);
+            compareNum = temp.top();
+            continue;
+        }
+        else
+        {
+            compareNum = temp.top();
+            result[i]++;
+            temp.pop();
         }
     }
+
+    return result;
+}
+
+int main()
+{
+    vector<int> prices = {1,2,3,2,3};
+
+    auto result = solution(prices);
+
+    for(auto t : result)
+    {
+        cout << t << endl;
+    }
+
+    return 0;
 }
