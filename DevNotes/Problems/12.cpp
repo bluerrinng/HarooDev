@@ -12,19 +12,27 @@ using namespace std;
 
 vector<int> solution(vector<int> prices)
 {
-    vector<int> result(prices.size(),0);
-    for(int i = 0; i< prices.size();i++)
+    vector<int> answer(prices.size());
+    stack<int> s; 
+    int priceNum = prices.size();
+
+    for(int i =0 ; i<priceNum;i++)
     {
-        for(int j = i+1; j < prices.size();j++)
+        while(!s.empty() && prices[s.top()] > prices[i])
         {
-            if(prices[i] <= prices[j])
-            {
-                result[i]++;
-            }
+            answer[s.top()] = i - s.top();
+            s.pop();
         }
+        s.push(i);
     }
 
-    return result;
+    while(!s.empty())
+    {
+        answer[s.top()] = priceNum - s.top() -1;
+        s.pop();
+    }
+
+    return answer;
 }
 
 int main()
