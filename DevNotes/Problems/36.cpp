@@ -1,15 +1,11 @@
-/*
-36.cpp
-깊이 우선 탐색 순회(DFS)
-*/
-
+#include <iostream>
+#include <vector>
 #include <unordered_map>
 #include <unordered_set>
-#include <vector>
 
 using namespace std;
 
-unordered_map<char, vector<char>> adjList;
+unordered_map<char, vector<char>> neighbors;
 vector<char> result;
 unordered_set<char> visited;
 
@@ -18,11 +14,25 @@ void dfs(char node)
     visited.insert(node);
     result.push_back(node);
 
-    for(char neighbor: adjList[node])
+    for(auto ch : neighbors[node])
     {
-        if(visited.find(neighbor) == visited.end())
+        if(visited.find(ch) == visited.end())
         {
-            dfs(neighbor);
+            dfs(ch);
         }
     }
+}
+
+vector<char> solution(vector<pair<char,char>> graph, char start)
+{
+    for(const auto& v : graph)
+    {
+        char firstv = v.first;
+        char secondv = v.second;
+
+        neighbors[firstv].push_back(secondv);
+    }
+
+    dfs(start);
+    return result;
 }
