@@ -33,6 +33,29 @@ void bfs(int start, vector<vector<int>> neighbors, vector<bool>& visited)
 
 }
 
+void dfs(int start, vector<vector<int>> neighbors, vector<bool>& visited)
+{
+    visited[start] = true;
+
+    cout << start << endl;
+
+    for(int i = 0 ; i<neighbors[start].size();i++)
+    {
+        if(!visited[neighbors[start][i]])
+        {
+            dfs(neighbors[start][i], neighbors, visited);
+        }
+    }
+}
+
+void reset(vector<bool>& visited)
+{
+    for(int i; i< visited.size();i++)
+    {
+        visited[i] = false;
+    }
+}
+
 int main()
 {
     int num, totalnum, startnode;
@@ -51,7 +74,16 @@ int main()
         neighbors[firstnum].push_back(secondnum);
     }
 
+
+    dfs(startnode, neighbors, visited);
+
+    reset(visited);
+
     bfs(startnode,neighbors,visited);
+
+
+
+    
 
     return 0;
 }
