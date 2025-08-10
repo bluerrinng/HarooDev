@@ -1,12 +1,14 @@
 #include <iostream>
 #include <vector>
+#include <queue>
+#include <string>
 
 using namespace std;
 
 int dx[4] = {0,1,0,-1};
 int dy[4] = {-1,0,1,0};
 
-
+queue<pair<int,int>> q;
 
 int dfs(int x, int y, vector<vector<int>>& grid, vector<vector<bool>>& visited)
 {
@@ -29,7 +31,41 @@ int dfs(int x, int y, vector<vector<int>>& grid, vector<vector<bool>>& visited)
     return cnt;
 }
 
-int bfs(int x, int y, vector<vector<grid>)
+int bfs(int x, int y, vector<vector<int>> grid, vector<vector<bool>>& visited)
+{
+    visited[x][y] = true;
+
+    q.push(pair(x,y));
+    int cnt = 1;
+
+    
+
+    while(!q.empty())
+    {
+        int tx = q.front().first;
+        int ty = q.front().second;
+
+        q.pop();
+
+        for(int i = 0;  i< 4 ;i++)
+        {
+            int nx  = tx + dx[i];
+            int ny = ty + dy[i];
+
+            if(nx >=0 && nx < grid.size() && ny >= 0 && ny < grid.size())
+            {
+                if(!visited[nx][ny] && grid[nx][ny] == 1)
+                {
+                    visited[nx][ny] = true;
+                    q.push(pair(nx,ny));
+                    cnt++;
+                }
+            }
+        }
+    }
+
+    return cnt;
+}
 
 
 int solution(vector<vector<int>>& grid, vector<vector<bool>>& visited)
@@ -48,6 +84,7 @@ int solution(vector<vector<int>>& grid, vector<vector<bool>>& visited)
         }
     }
 
+    sort(sizes.begin(),sizes.end());
     cout << count << "\n";      // 섬 개수
     for(int s : sizes)
     {
