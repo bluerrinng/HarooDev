@@ -43,17 +43,15 @@ int main()
         cin >> a >> b;
 
         neighbors[a].push_back(b);
+        neighbors[b].push_back(a);
     }
 
-    for(int i = 1; i< neighbors.size();i++)
+    for(int i = 1; i<nodeNum+1; i++)
     {
-        for(int j = 0; j<neighbors[i].size();j++)
+        if(!visited[i])
         {
-            if(!visited[neighbors[i][j]])
-            {
-                bfs(neighbors[i][j], neighbors, visited);
-                result++;
-            }
+            bfs(i, neighbors, visited);
+            result++;
         }
     }
 
