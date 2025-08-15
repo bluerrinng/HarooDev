@@ -36,5 +36,6 @@ vector<char> solution(vector<pair<char,char>> graph, char start)
     }
 
     dfs(start);
+    dfs(start);
     return result;
 }
