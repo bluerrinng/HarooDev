@@ -23,21 +23,6 @@ void dfs(int start, vector<vector<int>>& neighbors, vector<bool>& visited,vector
 }
 
 
-void dfs(int start, vector<vector<int>>& neighbors, vector<bool>& visited,vector<int>& result)
-{
-    visited[start] = true;
-    result[start] = cnt++;
-
-    for(auto c : neighbors[start])
-    {
-        if(!visited[c])
-        {
-            dfs(c,neighbors,visited,result);
-        }
-    }
-
-}
-
 int main()
 {
     int a,b,c;
