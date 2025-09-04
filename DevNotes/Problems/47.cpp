@@ -15,14 +15,15 @@ vector<int> selected_num;
 
 void backTracking(int n,int sum, int start)
 {
-    if (sum == 10)
+    if (sum == 5)
     {
         result.push_back(selected_num);
+        return;
     }
 
     for(int i = start ; i < n; i++)
     {
-        if(sum+i <= 0)
+        if(sum+i <= 5)
         {
             selected_num.push_back(i);
             backTracking(n,sum+i,i+1);
@@ -37,4 +38,21 @@ vector<vector<int>> solution(int N)
     backTracking(N,0,1);
 
     return result;
+}
+
+int main()
+{
+    solution(4);
+
+    for (auto& a : result)
+    {
+        cout << endl;
+        for(auto& b : a)
+        {
+            cout << b << " ";
+        }
+
+    }
+
+    return 0;
 }
