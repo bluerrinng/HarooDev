@@ -1,66 +1,61 @@
+/*
+55.cpp
+정렬이 완료된 두 배열 합치기
+
+병합정렬 사용해서 정렬해보기
+*/
+
 #include <iostream>
 #include <vector>
 
 using namespace std;
 
-int dx[4] = {0,1,0,-1};
-int dy[4] = {-1,0,1,0};
-
-void dfs(int x,int y, vector<vector<int>>& grid, vector<vector<bool>>& visited)
+vector<int> solution(vector<int> arr1, vector<int> arr2)
 {
-    int n = grid.size();
-    int m = grid[0].size();
 
-    visited[x][y] = true;
-
-    for(int i = 0; i<4;i++)
+    vector<int> merged;
+    int i = 0;
+    int j = 0;
+    
+    while(i < arr1.size()&& j < arr2.size())
     {
-        int nx = x+ dx[i];
-        int ny = y+ dy[i];
-
-        if(nx >= 0 && nx<n && ny>=0 && ny<m)
-    {
-        if(grid[nx][ny] == 1 && !visited[nx][ny])
+        if(arr1[i] < arr2[j])
         {
-            dfs(nx,ny,grid,visited);
+            merged.push_back(arr1[i]);
+            i++;
         }
-    }
-    }
-
-}
-
-int solution(vector<vector<int>> grid)
-{
-    int answer = 0 ;
-    int n = grid.size();
-    int m = grid[0].size();
-
-    vector<vector<bool>> visited(n, vector<bool>(m,false));
-
-    for(int i = 0; i<n;i++)
-    {
-        for(int j = 0; j<m;j++)
+        else
         {
-            if(grid[i][j] == 1 && !visited[i][j])
-            {
-                dfs(i,j,grid,visited);
-                answer++;
-            }
+            merged.push_back(arr2[j]);
+            j++;
         }
     }
 
-    return answer;
+    while(i < arr1.size())
+    {
+        merged.push_back(arr1[i]);
+        i++;
+    }
+    while(j< arr2.size())
+    {
+        merged.push_back(arr2[j]);
+        j++;
+    }
+
+    return merged;
 }
 
-int main() {
-    vector<vector<int>> grid = {
-        {1, 1, 0, 0, 0},
-        {1, 1, 0, 0, 1},
-        {0, 0, 0, 1, 1},
-        {0, 0, 0, 0, 0},
-        {1, 0, 1, 0, 1}
-    };
+int main()
+{
+    vector<int> arr1 = {1,3,3,5};
+    vector<int> arr2 = {2,4,5};
 
-    cout << solution(grid) << endl; 
+    vector<int> result = solution(arr1,arr2);
+
+    for(auto& i : result)
+    {
+        cout << i << endl;
+    }
+
     return 0;
 }
