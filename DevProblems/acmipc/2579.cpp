@@ -32,7 +32,7 @@ int main()
         result[2] = max(stairs[0]+stairs[2], stairs[1]+stairs[2]);
     }
 
-    for(int i = 3; i < n ;i++)
+    for(int i = 3; i < stairnum ;i++)
     {
         result[i] = max(result[i-2] + stairs[i], result[i-3] + stairs[i-1] + stairs[i]);
     }
