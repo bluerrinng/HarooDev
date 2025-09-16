@@ -5,6 +5,7 @@ Dynamic Programming의 기초적인 문제 - 피보나치 문제
 */
 
 #include <iostream>
+#include <vector>
 
 using namespace std;
 
@@ -13,10 +14,10 @@ int main()
     ios::sync_with_stdio(false);
     cin.tie(nullptr);
 
-    int num;
+    long long num;
     cin >> num;
 
-    vector<int> fib (num+1);
+    vector<long long> fib (num+1);
 
     fib[0] = 0;
     fib[1] = 1;
