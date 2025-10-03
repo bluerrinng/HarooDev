@@ -100,4 +100,4 @@ int main()
     sort(points.begin(), points.end(), compareX);
 
     cout << "Closest distance squared: " << closestPair(points) << endl;
-}작
+}
