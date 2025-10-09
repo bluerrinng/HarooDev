@@ -45,3 +45,6 @@
 
 # Ignore custom settings folder
 .vsetting/
+
+# Ignore file
+.DS_Store
